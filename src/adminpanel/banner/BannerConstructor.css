@@ -1,8 +1,7 @@
 .BannerConstructorDrop {
-    width: 90%;
-    height: 200px;
-    border-radius: 10%;
-    background-color: red;
+    width: 100%;
+    height: 50px;
+    background-color: red;  
 }
 
 .BannerConstructor {

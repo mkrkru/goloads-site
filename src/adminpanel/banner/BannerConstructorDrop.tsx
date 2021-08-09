@@ -5,11 +5,11 @@ import './BannerConstructor.css';
 
 interface BannerConstructorDropProps {
 
-
+    callbackDrop : (arrayBuffer : ArrayBuffer) => void
 
 }
 
-export class BannerConstructorDrop extends React.Component {
+export class BannerConstructorDrop extends React.Component<BannerConstructorDropProps> {
 
     drop(event: React.DragEvent) {
         event.preventDefault();
@@ -33,17 +33,7 @@ export class BannerConstructorDrop extends React.Component {
                 throw new Error("Bad file")
             }
         }
-        console.log(arrayBufferPromise)
-        arrayBufferPromise
-            .then(arrayBuffer => {
-                fetchBannerBuffer({
-                    url : "https://www.google.com",
-                    image : arrayBuffer,
-                    domains : [
-                        "https://www.yandex.ru"
-                    ]
-                }, (response) => console.log("HI321"))
-            })
+        arrayBufferPromise.then(arrayBuffer => this.props.callbackDrop(arrayBuffer))
     }
 
     render() {

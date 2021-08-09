@@ -84,7 +84,7 @@ export function fetchAnalyticsData(id: string, fn : (data? : AnalyticsData) => v
 }
 
 function promiseAnalyticsData(id : string) : Promise<AnalyticsData> {
-    return fetch(`https://goloads-db.herokuapp.com/analytics?id=${id}`, {
+    return fetch(`http://194.87.92.190:8080/analytics?id=${id}`, {
         method: "GET",
         headers: {
             "Access-Control-Allow-Origin": "*",
@@ -101,13 +101,16 @@ function promiseAnalyticsData(id : string) : Promise<AnalyticsData> {
         }
     })
     .then(data => {
-        return {
-            id : data.id,
-            clicks : data.clicks,
-            uniqueClicks : data.unique_clicks,
-            views : data.views,
-            uniqueViews : data.unique_views
+        if (data) {
+            return {
+                id : data.id,
+                clicks : data.clicks,
+                uniqueClicks : data.unique_clicks,
+                views : data.views,
+                uniqueViews : data.unique_views
+            }
         }
+        return data
     })
 }
 
@@ -128,13 +131,13 @@ export function columnById(id : number, data : AnalyticsData) : number[] {
 export function columnNameById(id : number) : string {
     switch(id) {
         case 0:
-            return "Clicks"
+            return "Клики"
         case 1:
-            return "Unique clicks"
+            return "Уникальные клики"
         case 2:
-            return "Views"
+            return "Просмотры"
         case 3:
-            return "Unique views"
+            return "Уникальные просмотры"
     }
     throw new Error("Column id is not right")
 }
