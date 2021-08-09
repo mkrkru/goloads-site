@@ -100,6 +100,15 @@ function promiseAnalyticsData(id : string) : Promise<AnalyticsData> {
             return null;
         }
     })
+    .then(data => {
+        return {
+            id : data.id,
+            clicks : data.clicks,
+            uniqueClicks : data.unique_clicks,
+            views : data.views,
+            uniqueViews : data.unique_views
+        }
+    })
 }
 
 export function columnById(id : number, data : AnalyticsData) : number[] {

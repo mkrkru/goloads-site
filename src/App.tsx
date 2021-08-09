@@ -35,5 +35,5 @@ function App() {
 export default App;
 
 /*
-<script async src="https://telegram.org/js/telegram-widget.js?15" data-telegram-login="goloads_auth_bot" data-size="medium" data-auth-url="https://goloads-site.herokuapp.com/analytics" data-request-access="write"></script>
+<script async src="https://telegram.org/js/telegram-widget.js?15" data-telegram-login="goloads_auth_bot" data-size="medium" data-auth-url="http://goloads-site.herokuapp.com/analytics" data-request-access="write"></script>
 */
