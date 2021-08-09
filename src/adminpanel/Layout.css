@@ -1,0 +1,88 @@
+@keyframes BodyAppearance {
+    from {
+        color: rgb(255, 255, 255, 255);
+        top: -100px;
+    }
+    to {
+        color: inherit;
+        top: 0px;
+    }
+}
+
+.AdminLayout {
+    height: 100vh;
+    color: white;
+    background-color: #1C1C1C;
+}
+
+.AdminLayoutUserHeader {
+    text-align: right;
+    margin-right: 20px;
+}
+
+.AdminLayoutLeftBar {
+    display : flex;
+    flex-direction: column;
+    align-items: center;
+    width: 120px;
+    height: inherit;
+    /* border-right: 1px solid #202124; */
+    /* background-color: azure; */
+}
+
+.AdminLayoutButton {
+    background-color: rgb(145, 221, 30);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    margin-bottom: 20px;
+    box-shadow: 0px 0px 25px gray;
+}
+
+.AdminLayoutButtonImage {
+    width: 60px;
+    height: 60px;
+}
+
+.AdminLayoutButton:hover {
+    box-shadow: 0px 0px 40px gray;
+}
+
+.AdminLayoutLeftBarMargin {
+    margin-bottom: 20px;
+}
+
+.AdminLayoutContentBody {
+    /* flex-grow : 9; */
+    /* height: 100%; */
+    width: 100%;
+    /* animation: BodyAppearance normal 4s linear;  */
+    /* background-color: Azure; */
+}
+
+.AdminLayoutBody {
+    display : flex;
+    align-items: stretch;
+    flex-direction: row;
+    /* text-align: right; */
+    width: 100%; 
+    background-color: #1C1C1C;
+    min-height: calc(100vh - 91px);
+    /* min-height: 90vh; */
+}
+
+.AdminLayoutHeader {
+    width: 100%;
+    height: 90px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items : center;
+    border-bottom: 1px solid #202124;
+}
+
+.AdminLayoutTitle {
+    font-size: 300%;
+    margin-left: 20px;
+    /* color: azure; */
+}

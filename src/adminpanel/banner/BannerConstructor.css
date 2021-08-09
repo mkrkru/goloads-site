@@ -1,0 +1,13 @@
+.BannerConstructorDrop {
+    width: 90%;
+    height: 200px;
+    border-radius: 10%;
+    background-color: red;
+}
+
+.BannerConstructor {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
