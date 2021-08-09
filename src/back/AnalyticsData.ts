@@ -84,7 +84,7 @@ export function fetchAnalyticsData(id: string, fn : (data? : AnalyticsData) => v
 }
 
 function promiseAnalyticsData(id : string) : Promise<AnalyticsData> {
-    return fetch(`http://194.87.92.190:8080/analytics?id=${id}`, {
+    return fetch(`https://doats.ml:8080/analytics?id=${id}`, {
         method: "GET",
         headers: {
             "Access-Control-Allow-Origin": "*",

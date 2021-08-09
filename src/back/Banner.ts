@@ -29,7 +29,7 @@ export function fetchBanner(banner : Banner, fn : (response : any) => void) {
 }
 
 function promiseBanner(buffer : Banner) : Promise<any> {
-    return fetch('http://194.87.92.190:8080/add', {
+    return fetch('https://doats.ml:8080/add', {
         method : "POST",
         headers : {
             "Access-Control-Allow-Origin": "*",
