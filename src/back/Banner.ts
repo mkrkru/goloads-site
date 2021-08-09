@@ -29,7 +29,7 @@ export function fetchBanner(banner : Banner, fn : (response : any) => void) {
 }
 
 function promiseBanner(buffer : Banner) : Promise<any> {
-    return fetch('http://192.168.239.18:8080/banner', {
+    return fetch('https://goloads-db.herokuapp.com/banner', {
         method : "POST",
         headers : {
             "Access-Control-Allow-Origin": "*",

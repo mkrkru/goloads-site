@@ -84,7 +84,7 @@ export function fetchAnalyticsData(id: string, fn : (data? : AnalyticsData) => v
 }
 
 function promiseAnalyticsData(id : string) : Promise<AnalyticsData> {
-    return fetch(`http://192.168.239.18:8080/analytics?id=${id}`, {
+    return fetch(`https://goloads-db.herokuapp.com/analytics?id=${id}`, {
         method: "GET",
         headers: {
             "Access-Control-Allow-Origin": "*",
