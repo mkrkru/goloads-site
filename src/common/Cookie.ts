@@ -18,11 +18,11 @@ export function getTelegramIcon() : string {
 }
 
 export function setTelegramId(id : number) {
-    cookie.set("tg_user", id)
+    cookie.set("tg_user", id, { path: "/" })
 }
 
 export function setTelegramIcon(icon : string) {
-    cookie.set("tg_icon", icon)
+    cookie.set("tg_icon", icon, { path: "/" })
 }
 
 export function setTelegramUser(telegramUser : TelegramUser) {
