@@ -32,10 +32,11 @@ export class AdminPanelLayout extends React.Component<AdminPanelLayoutProps> {
                         </Route>
                         )
                     }
-                    <UserComponent 
+                    {/* <UserComponent 
                     // icon = "https://avatars.githubusercontent.com/u/51133999?v=4" 
                     className = "AdminLayoutUserHeader"
-                    />
+                    /> */}
+                    <script async src="https://telegram.org/js/telegram-widget.js?15" data-telegram-login="goloads_auth_bot" data-size="large" data-auth-url="https://goloads-site.herokuapp.com/analytics" data-request-access="write"></script>
                 </div>
                 <div className="AdminLayoutBody">
                     <div className="AdminLayoutLeftBar">
