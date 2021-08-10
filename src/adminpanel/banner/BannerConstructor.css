@@ -1,14 +1,26 @@
 .BannerConstructorDrop {
     width: 100%;
-    height: 50px;
+    height: 150px;
+    /* border-radius: 3%; */
+    border-radius: 4px;
+    /* box-sizing: border-box; */
     background-color: red;  
 }
 
 .BannerConstructor {
-    width: 500px;
+    width: 650px;
+    /* height: 350px; */
+    height: 250px;
     display: flex;
-    justify-content: center;
+    float: left;
+    justify-content: space-between;
     flex-direction: column;
+}
+
+.BannerConstructorContainer {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
 }
 
 .BannerConstructorInputs {
@@ -20,5 +32,18 @@
 }
 
 .BannerConstructorDomainsInputSelect {
-    width: 60%;
+    width: 100%;
+    float: left;
+}
+
+.BannerConstructorUrlInputSelect {
+    width: 100%;
+    float: right;
+}
+
+.BannerConstructorUploadButton {
+    border-radius: 4px;
+    width: 250px;
+    height: 100px;
+    background-color: yellowgreen;
 }

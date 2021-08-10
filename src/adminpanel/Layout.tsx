@@ -33,7 +33,7 @@ export class AdminPanelLayout extends React.Component<AdminPanelLayoutProps> {
                         )
                     }
                     <UserComponent 
-                    icon = "https://avatars.githubusercontent.com/u/51133999?v=4" 
+                    // icon = "https://avatars.githubusercontent.com/u/51133999?v=4" 
                     className = "AdminLayoutUserHeader"
                     />
                 </div>

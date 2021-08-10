@@ -1,47 +1,38 @@
 import React from "react";
-import { fetchBannerBuffer } from "../../back/Banner";
 import { base64encode, bytesToBase64 } from "../../base64";
+import { getExtension } from "../../files";
 import './BannerConstructor.css';
 
 interface BannerConstructorDropProps {
-    callbackDrop : (arrayBuffer : ArrayBuffer) => void
+    callbackDrop: (file: File) => void
 }
 
 export class BannerConstructorDrop extends React.Component<BannerConstructorDropProps> {
 
     drop(event: React.DragEvent) {
         event.preventDefault();
-        var arrayBufferPromise : Promise<ArrayBuffer>
-        var arrayBufferPromiseNullable : unknown
-        console.log(event.dataTransfer)
+        var file : File | null = null
         if (event.dataTransfer.items) {
-            arrayBufferPromiseNullable = event.dataTransfer.items[0].getAsFile()?.arrayBuffer()
-            if (arrayBufferPromiseNullable) {
-                arrayBufferPromise = arrayBufferPromiseNullable as Promise<ArrayBuffer>
-            }
-            else {
-                throw new Error("Bad file")
-            }
+            file = event.dataTransfer.items[0].getAsFile()
         } else {
-            arrayBufferPromiseNullable = event.dataTransfer.files[0].arrayBuffer()
-            if (arrayBufferPromiseNullable) {
-                arrayBufferPromise = arrayBufferPromiseNullable as Promise<ArrayBuffer>
-            }
-            else {
-                throw new Error("Bad file")
-            }
+            file = event.dataTransfer.files[0]
         }
-        arrayBufferPromise.then(arrayBuffer => this.props.callbackDrop(arrayBuffer))
+        if (file === null) {
+            throw new Error("Bad file")
+        }
+        this.props.callbackDrop(file)
     }
 
     render() {
         return <div
-            className="BannerConstructorDrop"
-            onDrop={e => this.drop(e)} 
+            className="BannerConstructorDrop Flex-Center"
+            onDrop={e => this.drop(e)}
             onDragOver={e => e.preventDefault()}
             onDragLeave={e => e.preventDefault()}
-            onDragEnter={e => e.preventDefault()}    
-        />
+            onDragEnter={e => e.preventDefault()}
+        >
+            Drag and drop to upload
+        </div>
     }
 
 }

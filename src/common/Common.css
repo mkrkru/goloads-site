@@ -29,7 +29,8 @@
     text-decoration: bold;
 }
 
-.Primary {
-    border-radius: 5%;
-    background-color: yellowgreen;
+.Flex-Center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
