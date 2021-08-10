@@ -1,4 +1,4 @@
-import cookie from 'cookie_js'; 
+import cache from 'js-cache';
 
 export interface TelegramUser {
     id : number
@@ -6,23 +6,23 @@ export interface TelegramUser {
 }
 
 export function isTelegramUserDefined() : boolean{
-    return cookie.get("tg_user") !== undefined
+    return cache.get("tg_user") !== undefined
 }
 
 export function getTelegramUser() : number {
-    return cookie.get("tg_user")
+    return cache.get("tg_user")
 }
 
 export function getTelegramIcon() : string {
-    return cookie.get("tg_icon")
+    return cache.get("tg_icon")
 }
 
 export function setTelegramId(id : number) {
-    cookie.set("tg_user", id, { path: "/" })
+    cache.set("tg_user", id)
 }
 
 export function setTelegramIcon(icon : string) {
-    cookie.set("tg_icon", icon, { path: "/" })
+    cache.set("tg_icon", icon)
 }
 
 export function setTelegramUser(telegramUser : TelegramUser) {
