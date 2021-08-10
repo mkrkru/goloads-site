@@ -22,16 +22,12 @@ export function promiseBanner(buffer : Banner) : Promise<any> {
     })
 }
 
-export function sendBannerImage(image : ArrayBuffer, type : string, fn : (response : any) => void) {
-    promiseBannerImage(image, type).then(fn)
-}
-
-export async function promiseBannerImage(image : ArrayBuffer, type : string) : Promise<any> {
+export function sendSyncBannerImage(image : ArrayBuffer, type : string, id : string) : any {
     var request = new XMLHttpRequest()
-    request.open("POST", "https://doats.ml:8080/add/image", false)
+    request.open("POST", `https://doats.ml:8080/add/image?id=${id}`, false)
     request.setRequestHeader("Access-Control-Allow-Origin", "*")
     request.setRequestHeader("Accept", "application/json")
     request.setRequestHeader("Content-type", `image/${type}`)
     request.send(image)
-    return new Promise(request.response)
+    return request.response
 }

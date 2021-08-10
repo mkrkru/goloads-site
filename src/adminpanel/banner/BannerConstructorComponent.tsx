@@ -7,12 +7,13 @@ import { BannerConstructorUrlInput } from './BannerConstructorUrlInput';
 import { BannerExampleComponent } from './BannerExampleComponent';
 import { bytesToBase64 } from '../../base64';
 import { getExtension, loadFile } from '../../files';
-import { fetchBanner } from '../../back/Banner';
+import { fetchBanner, promiseBanner, sendSyncBannerImage } from '../../back/Banner';
+import { throws } from 'assert';
 
 interface BannerConstructorComponentState {
-    image ?: string
-    imageBytes ?: ArrayBuffer
-    imageType ?: string
+    image?: string
+    imageBytes?: ArrayBuffer
+    imageType?: string
     url: string
     domains: string[]
     inputDomain: string
@@ -65,7 +66,7 @@ export class BannerConstructorComponent extends React.Component<{}, BannerConstr
                         this.setState((oldState, _) => {
                             return {
                                 ...oldState,
-                                imageType : getExtension(file.name)
+                                imageType: getExtension(file.name)
                             }
                         })
                         const fileReader = new FileReader()
@@ -74,37 +75,47 @@ export class BannerConstructorComponent extends React.Component<{}, BannerConstr
                             console.log(image);
                             return {
                                 ...oldState,
-                                image : image
+                                image: image
                             }
                         }))
                         fileReader.readAsDataURL(file)
                         file.arrayBuffer().then(arrayBuffer => this.setState((oldState, _) => {
                             return {
                                 ...oldState,
-                                imageBytes : arrayBuffer
+                                imageBytes: arrayBuffer
                             }
                         }))
                     }}
                 />
             </div>
-            <button 
+            <button
                 className="BannerConstructorUploadButton"
-                onClick = {() => {
-                    if (this.state.url !== "" && this.state.image !== undefined && this.state.imageBytes !== undefined) {
-                        fetchBanner({
-                            domains : this.state.domains,
-                            url : this.state.url
-                        }, () => {})
-                    }
-                }}
+                onClick={() => this.handleButtonClick}
             >
                 Upload
             </button>
             <BannerExampleComponent
-                image = {this.state.image}
-                redirect = {"http://" + this.state.url}
+                image={this.state.image}
+                redirect={"http://" + this.state.url}
             />
         </div>
+    }
+
+    handleButtonClick() {
+        if (this.state.url !== "" && this.state.image !== undefined && this.state.imageBytes !== undefined) {
+            promiseBanner({
+                domains: this.state.domains,
+                url: this.state.url
+            })
+                .then((response) => {
+                    if (this.state.imageBytes !== undefined && this.state.imageType !== undefined) {
+                        return sendSyncBannerImage(this.state.imageBytes, this.state.imageType, response.id)
+                    }
+                })
+                .then((response) => {
+                    console.log(response)
+                })
+        }
     }
 
 }

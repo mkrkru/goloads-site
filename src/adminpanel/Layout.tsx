@@ -4,10 +4,7 @@ import './Layout.css';
 import {BrowserRouter, Route, Link, Switch, Redirect} from 'react-router-dom';
 import { Title } from "./TitleComponent";
 import TelegramLoginButton from 'react-telegram-login';
-
-const handleTelegramResponse = (response: any) => {
-    console.log(response);
-};
+import cookie from 'cookie_js'
 
 export interface AdminPanelBarComponent {
     render: JSX.Element | React.Component | Element
@@ -26,7 +23,18 @@ export class AdminPanelLayout extends React.Component<AdminPanelLayoutProps> {
         super(props)
     }
 
+    handleResponse(response : any) {
+        cookie.set('tg_user', response.id)
+        cookie.set('tg_icon', response.photo_url)
+        this.forceUpdate()
+    }
+
     render() {
+        if (cookie.get("tg_user") === undefined) {
+            return <div className = "Flex-center">
+                <TelegramLoginButton dataOnauth={(response : any) => this.handleResponse(response)} botName="goloads_auth_bot" />
+            </div>
+        }
         return <BrowserRouter>
             <Redirect exact from="/" to="/analytics"/>
             <div className="AdminLayout">
@@ -37,12 +45,10 @@ export class AdminPanelLayout extends React.Component<AdminPanelLayoutProps> {
                         </Route>
                         )
                     }
-                    <TelegramLoginButton dataOnauth={handleTelegramResponse} botName="goloads_auth_bot" />
-                    {/* <UserComponent 
-                    // icon = "https://avatars.githubusercontent.com/u/51133999?v=4" 
+                    <UserComponent 
+                    icon = {cookie.get('tg_icon')}
                     className = "AdminLayoutUserHeader"
-                    /> */}
-                    {/* <script async src="https://telegram.org/js/telegram-widget.js?15" data-telegram-login="goloads_auth_bot" data-size="large" data-auth-url="https://goloads-site.herokuapp.com/analytics" data-request-access="write"></script> */}
+                    />
                 </div>
                 <div className="AdminLayoutBody">
                     <div className="AdminLayoutLeftBar">
