@@ -23,19 +23,22 @@ export class AdminPanelLayout extends React.Component<AdminPanelLayoutProps> {
         super(props)
     }
 
-    handleResponse(response: any) {
-        cookie.set('tg_user', response.id)
-        cookie.set('tg_icon', response.photo_url)
+    handleResponse(user: any) {
+        cookie.set({
+            'tg_user' : user.id,
+            'tg_icon' : user.photo_url
+        })
+        console.log(user);
         this.forceUpdate()
     }
 
     render() {
         if (cookie.get("tg_user") === undefined) {
             return <div
-                className="Flex-center"
+                className="Flex-center Center"
                 style={{
                     width: "100%",
-                    height: "100%",
+                    height: "100vh",
                     backgroundColor: "#1C1C1C"
                 }}
             >
