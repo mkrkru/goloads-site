@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Link, Switch, Redirect } from 'react-router-dom';
 import { Title } from "./TitleComponent";
 import TelegramLoginButton from 'react-telegram-login';
 import cookie from 'cookie_js'
+import { getTelegramIcon, isTelegramUserDefined, setTelegramUser } from "../common/Cookie";
 
 export interface AdminPanelBarComponent {
     render: JSX.Element | React.Component | Element
@@ -24,16 +25,12 @@ export class AdminPanelLayout extends React.Component<AdminPanelLayoutProps> {
     }
 
     handleResponse(user: any) {
-        cookie.set({
-            'tg_user' : user.id,
-            'tg_icon' : user.photo_url
-        })
-        console.log(user);
+        setTelegramUser(user)
         this.forceUpdate()
     }
 
     render() {
-        if (cookie.get("tg_user") === undefined) {
+        if (!isTelegramUserDefined()) {
             return <div
                 className="Flex-center Center"
                 style={{
@@ -42,7 +39,8 @@ export class AdminPanelLayout extends React.Component<AdminPanelLayoutProps> {
                     backgroundColor: "#1C1C1C"
                 }}
             >
-                <TelegramLoginButton dataOnauth={(response: any) => this.handleResponse(response)} botName="goloads_auth_bot" />
+                Login to access
+                <TelegramLoginButton dataOnauth={(user: any) => this.handleResponse(user)} botName="goloads_auth_bot" />
             </div>
         }
         return <BrowserRouter>
@@ -56,7 +54,7 @@ export class AdminPanelLayout extends React.Component<AdminPanelLayoutProps> {
                         )
                     }
                     <UserComponent
-                        icon={cookie.get('tg_icon')}
+                        icon={getTelegramIcon()}
                         className="AdminLayoutUserHeader"
                     />
                 </div>
