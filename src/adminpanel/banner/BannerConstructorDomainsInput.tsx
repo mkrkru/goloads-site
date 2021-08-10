@@ -55,9 +55,9 @@ export class BannerConstructorDomainsInput extends React.Component<BannerConstru
                     label : value
                 }
             })}
-            onKeyDown = {(event) => this.handleKeyDown(event)}
-            onChange = {(value, meta) => value ? this.handleChange(value as Array<InputOption>, meta) : this.handleChange([], meta)}
-            onInputChange = {(inputValue) => this.handleInputChange(inputValue)}
+            onKeyDown = {(event: React.KeyboardEvent<Element>) => this.handleKeyDown(event)}
+            onChange = {(value: InputOption[], meta: any) => value ? this.handleChange(value, meta) : this.handleChange([], meta)}
+            onInputChange = {(inputValue: string) => this.handleInputChange(inputValue)}
         />
     }
 

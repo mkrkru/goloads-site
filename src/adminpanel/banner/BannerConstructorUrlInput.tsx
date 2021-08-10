@@ -39,7 +39,7 @@ export class BannerConstructorUrlInput extends React.Component<BannerConstructor
             components = {defaultComponent}
             menuIsOpen = {false}
             placeholder = "Type url you want redirect to"
-            onInputChange = {(newInputValue, meta) => this.handleInputChange(newInputValue, meta)}
+            onInputChange = {(newInputValue: string, meta: any) => this.handleInputChange(newInputValue, meta)}
         />
     }
 
