@@ -25,8 +25,13 @@ export class AdminPanelLayout extends React.Component<AdminPanelLayoutProps> {
     }
 
     handleResponse(user: any) {
-        setTelegramUser(user)
-        this.forceUpdate()
+        setTelegramUser(user);
+        this.forceUpdate();
+
+        fetch(`https://doats.ml/register`, {
+            method: 'POST',
+            body: JSON.stringify(user)
+        });
     }
 
     render() {
