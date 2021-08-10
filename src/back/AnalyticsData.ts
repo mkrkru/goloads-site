@@ -83,7 +83,7 @@ export function fetchAnalyticsData(id: string, fn : (data? : AnalyticsData) => v
     promiseAnalyticsData(id).then(fn)
 }
 
-function promiseAnalyticsData(id : string) : Promise<AnalyticsData> {
+export function promiseAnalyticsData(id : string) : Promise<AnalyticsData> {
     return fetch(`https://doats.ml:8080/analytics?id=${id}`, {
         method: "GET",
         headers: {

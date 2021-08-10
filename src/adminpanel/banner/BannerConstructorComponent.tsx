@@ -11,6 +11,8 @@ import { fetchBanner } from '../../back/Banner';
 
 interface BannerConstructorComponentState {
     image ?: string
+    imageBytes ?: ArrayBuffer
+    imageType ?: string
     url: string
     domains: string[]
     inputDomain: string
@@ -60,9 +62,15 @@ export class BannerConstructorComponent extends React.Component<{}, BannerConstr
                 />
                 <BannerConstructorDrop
                     callbackDrop={(file) => {
+                        this.setState((oldState, _) => {
+                            return {
+                                ...oldState,
+                                imageType : getExtension(file.name)
+                            }
+                        })
                         const fileReader = new FileReader()
                         fileReader.addEventListener('load', (event) => this.setState((oldState, _) => {
-                            var image = "" + event?.target?.result
+                            var image = event?.target?.result as string
                             console.log(image);
                             return {
                                 ...oldState,
@@ -70,17 +78,22 @@ export class BannerConstructorComponent extends React.Component<{}, BannerConstr
                             }
                         }))
                         fileReader.readAsDataURL(file)
+                        file.arrayBuffer().then(arrayBuffer => this.setState((oldState, _) => {
+                            return {
+                                ...oldState,
+                                imageBytes : arrayBuffer
+                            }
+                        }))
                     }}
                 />
             </div>
             <button 
                 className="BannerConstructorUploadButton"
                 onClick = {() => {
-                    if (this.state.url !== "" && this.state.image !== undefined) {
+                    if (this.state.url !== "" && this.state.image !== undefined && this.state.imageBytes !== undefined) {
                         fetchBanner({
                             domains : this.state.domains,
-                            url : this.state.url,
-                            image : this.state.image
+                            url : this.state.url
                         }, () => {})
                     }
                 }}
