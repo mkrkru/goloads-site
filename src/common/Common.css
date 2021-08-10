@@ -29,7 +29,7 @@
     text-decoration: bold;
 }
 
-.TaggableInput {
-    display: flex;
-    flex-wrap: wrap;
+.Primary {
+    border-radius: 5%;
+    background-color: yellowgreen;
 }

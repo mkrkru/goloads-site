@@ -4,9 +4,7 @@ import { base64encode, bytesToBase64 } from "../../base64";
 import './BannerConstructor.css';
 
 interface BannerConstructorDropProps {
-
     callbackDrop : (arrayBuffer : ArrayBuffer) => void
-
 }
 
 export class BannerConstructorDrop extends React.Component<BannerConstructorDropProps> {
@@ -39,7 +37,7 @@ export class BannerConstructorDrop extends React.Component<BannerConstructorDrop
     render() {
         return <div
             className="BannerConstructorDrop"
-            onDrop={this.drop} 
+            onDrop={e => this.drop(e)} 
             onDragOver={e => e.preventDefault()}
             onDragLeave={e => e.preventDefault()}
             onDragEnter={e => e.preventDefault()}    

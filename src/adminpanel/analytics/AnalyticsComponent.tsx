@@ -25,7 +25,6 @@ export class AnalyticsComponent extends React.Component<AnalyticsComponentProps>
             data = {this.props.data}
             columnStart = {0}
             />
-            
             <Analytics
             clicksCurrentWeekColor = "#00FF00" 
             clicksLastWeekColor = "#FF0000" 

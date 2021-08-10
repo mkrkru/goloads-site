@@ -5,8 +5,20 @@
 }
 
 .BannerConstructor {
-    width: 100%;
+    width: 500px;
     display: flex;
     justify-content: center;
     flex-direction: column;
+}
+
+.BannerConstructorInputs {
+    width: 100%;
+}
+
+.BannerConstructorDomensInput {
+    flex-shrink: 2;
+}
+
+.BannerConstructorDomainsInputSelect {
+    width: 60%;
 }
