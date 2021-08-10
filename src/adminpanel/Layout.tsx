@@ -1,7 +1,7 @@
 import React from "react";
 import { UserComponent } from "../common/UserComponent";
 import './Layout.css';
-import {BrowserRouter, Route, Link, Switch, Redirect} from 'react-router-dom';
+import { BrowserRouter, Route, Link, Switch, Redirect } from 'react-router-dom';
 import { Title } from "./TitleComponent";
 import TelegramLoginButton from 'react-telegram-login';
 import cookie from 'cookie_js'
@@ -23,7 +23,7 @@ export class AdminPanelLayout extends React.Component<AdminPanelLayoutProps> {
         super(props)
     }
 
-    handleResponse(response : any) {
+    handleResponse(response: any) {
         cookie.set('tg_user', response.id)
         cookie.set('tg_icon', response.photo_url)
         this.forceUpdate()
@@ -31,44 +31,51 @@ export class AdminPanelLayout extends React.Component<AdminPanelLayoutProps> {
 
     render() {
         if (cookie.get("tg_user") === undefined) {
-            return <div className = "Flex-center">
-                <TelegramLoginButton dataOnauth={(response : any) => this.handleResponse(response)} botName="goloads_auth_bot" />
+            return <div
+                className="Flex-center"
+                style={{
+                    width: "100%",
+                    height: "100%",
+                    backgroundColor: "#1C1C1C"
+                }}
+            >
+                <TelegramLoginButton dataOnauth={(response: any) => this.handleResponse(response)} botName="goloads_auth_bot" />
             </div>
         }
         return <BrowserRouter>
-            <Redirect exact from="/" to="/analytics"/>
+            <Redirect exact from="/" to="/analytics" />
             <div className="AdminLayout">
                 <div className="AdminLayoutHeader">
                     {
                         this.props.barComponents.map((value, _, __) => <Route exact path={value.path}>
-                            <Title title={value.title}/>
+                            <Title title={value.title} />
                         </Route>
                         )
                     }
-                    <UserComponent 
-                    icon = {cookie.get('tg_icon')}
-                    className = "AdminLayoutUserHeader"
+                    <UserComponent
+                        icon={cookie.get('tg_icon')}
+                        className="AdminLayoutUserHeader"
                     />
                 </div>
                 <div className="AdminLayoutBody">
                     <div className="AdminLayoutLeftBar">
-                        <div className="AdminLayoutLeftBarMargin"/>
-                            {
-                                this.props.barComponents.map((component, _, __) => {
-                                    return <Link to={component.path}>
-                                                <div className="AdminLayoutButton">
-                                                    <img src={component.icon} className="Circle AdminLayoutButtomImage"/>
-                                                </div> 
-                                            </Link>
-                                })
-                            }
+                        <div className="AdminLayoutLeftBarMargin" />
+                        {
+                            this.props.barComponents.map((component, _, __) => {
+                                return <Link to={component.path}>
+                                    <div className="AdminLayoutButton">
+                                        <img src={component.icon} className="Circle AdminLayoutButtomImage" />
+                                    </div>
+                                </Link>
+                            })
+                        }
                     </div>
                     <div className="AdminLayoutContentBody">
                         {
                             this.props.barComponents.map((component, _, __) => {
                                 return <Route exact path={component.path}>
                                     {component.render}
-                                </Route> 
+                                </Route>
                             })
                         }
                     </div>
