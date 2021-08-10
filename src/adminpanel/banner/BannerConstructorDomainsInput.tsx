@@ -1,7 +1,6 @@
 import React from 'react';
 import makeAnimated from 'react-select/animated'
 import CreatableSelect from 'react-select/creatable'
-import { SelectComponents } from 'react-select/src/components';
 import { InputOption } from '../../common/InputOption';
 
 interface BannerConstructorDomainsInputProps {
