@@ -1,0 +1,99 @@
+.SettingsWindow {
+    width: 300px;
+    border-radius: 4px;
+    background-color: white;    
+    border: 1px solid #a0a0a0;
+    position: absolute;
+}
+
+.SettingsDirectory {
+    width: 100%;
+    border-bottom: 1px solid #a0a0a0;
+    min-height: 24px;
+    color: #a0a0a0;
+    background-color: white;
+}
+
+.SettingsDirectoryContainer {
+    width: inherit;
+    display: flex;
+    flex-direction: row;
+}
+
+.SettingsDirectoryContainerBorder {
+    width: 15%;
+    border-right: 1px solid #a0a0a0;
+    /* height: inherit; */
+}
+
+.SettingsDirectoryContainerData {
+    width: 85%;
+    padding-left: 4px;
+    display: flex;
+    flex-direction: column;
+}
+
+.Settings {
+    /* border-bottom: 1px solid #a0a0a0; */
+    height: 38px;
+    /* background: white; */
+}
+
+.XCoordinatePositive {
+    position: absolute;
+    width: 30px;
+    height: 6px;
+    top: -3px;
+    left: 3px;
+    z-index: 1;
+    background-color: limegreen;
+}
+
+.XCoordinateNegative {
+    position: absolute;
+    width: 30px;
+    height: 6px;
+    top: -3px;
+    left: -33px;
+    z-index: 1;
+    background-color: red;
+}
+
+.CoordinateMiddleRect {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    top : -6px;
+    left: -6px;
+    z-index: 1;
+    background-color: black;
+}
+
+.Component {
+    position: absolute;
+}
+
+.YCoordinatePositive {
+    position: absolute;
+    height: 30px;
+    width: 6px;
+    left: -3px;
+    top: 3px;
+    z-index: 1;
+    background-color: limegreen;
+}
+
+.YCoordinateNegative {
+    position: absolute;
+    height: 30px;
+    width: 6px;
+    left: -3px;
+    top: -33px;
+    z-index: 1;
+    background-color: red;
+}
+
+.SettingsDirectoryContainerDataName {
+    height: 38px;
+    text-align: center;
+}

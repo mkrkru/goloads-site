@@ -1,0 +1,54 @@
+.Constructor {
+    width: inherit;
+    height: inherit;
+    display: flex;
+    flex-direction: row;
+}
+
+.ConstructorField {
+    overflow-y: auto;
+    width: 80%;
+    max-height: inherit;
+}
+
+.ConstructorComponents {
+    overflow-y: auto;
+    display: flex;
+    width: 20%;
+    max-height: inherit;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.ConstructorCell {
+    border : 1px solid gray;
+    width : 38px;
+    height: 38px;
+    background-color: transparent;
+}
+
+.ConstructorFieldColumn {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+}
+
+.ConstructorFieldRow {
+    display: flex;
+    flex-direction: row;
+}
+
+/* .ConstructorCellCircle {
+    width: 10px;
+    height: 10px;
+    top : 30px;
+    background-color: white;
+} */
+
+/* .ConstructorCellBorder {
+    width: 38px;
+    height: 38px;
+    border: 1px solid rgb(255, 255, 255, 125);
+    left: 20px;
+    top: 20px;
+} */

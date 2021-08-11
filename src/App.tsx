@@ -8,6 +8,7 @@ import { FetchAnalyticsComponent } from './adminpanel/analytics/FetchAnalyticsCo
 import cookie from 'cookie_js'
 
 import AnalyticsIcon from './assets/analytics_icon.png'
+import { ConstructorComponent } from './adminpanel/constructor/ConstructorComponent';
 
 function App() {
     if (!cookie.enabled()) {
@@ -34,6 +35,12 @@ function App() {
             icon: "",
             title: "Конструктор",
             path: "/constructor"
+        },
+        {
+            render: <ConstructorComponent/>,
+            icon : "",
+            title : "ConstructIt",
+            path : "/construct"
         }
       ]}
       />

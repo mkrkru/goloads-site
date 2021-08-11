@@ -90,7 +90,7 @@ export class BannerConstructorComponent extends React.Component<{}, BannerConstr
             </div>
             <button
                 className="BannerConstructorUploadButton"
-                onClick={() => this.handleButtonClick}
+                onClick={() => this.handleButtonClick()}
             >
                 Upload
             </button>
@@ -108,12 +108,11 @@ export class BannerConstructorComponent extends React.Component<{}, BannerConstr
                 url: this.state.url
             })
                 .then((response) => {
+                    console.log(response);
+                    
                     if (this.state.imageBytes !== undefined && this.state.imageType !== undefined) {
-                        return sendSyncBannerImage(this.state.imageBytes, this.state.imageType, response.id)
+                        sendSyncBannerImage(this.state.imageBytes, this.state.imageType, response.id, (response) => console.log(response));
                     }
-                })
-                .then((response) => {
-                    console.log(response)
                 })
         }
     }

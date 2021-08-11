@@ -19,15 +19,17 @@ export function promiseBanner(buffer : Banner) : Promise<any> {
             url : buffer.url,
             domains : buffer.domains
         })
-    })
+    }).then(response => response.json())
 }
 
-export function sendSyncBannerImage(image : ArrayBuffer, type : string, id : string) : any {
+export function sendSyncBannerImage(image : ArrayBuffer, type : string, id : string, fn : (response : any) => void) : any {
     var request = new XMLHttpRequest()
     request.open("POST", `https://doats.ml:8080/add/image?id=${id}`, false)
+    request.onload = () => {
+        fn(request.response)
+    }
     request.setRequestHeader("Access-Control-Allow-Origin", "*")
     request.setRequestHeader("Accept", "application/json")
     request.setRequestHeader("Content-type", `image/${type}`)
     request.send(image)
-    return request.response
 }
