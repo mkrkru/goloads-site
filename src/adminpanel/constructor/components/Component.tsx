@@ -11,7 +11,7 @@ export const integerParser = (
 ) => {
     return {
         canParse: (value: string) => {
-            if (!value) return false
+            if (!value) return true
             var num = parseInt(value)
             return num !== NaN &&
                 (min ? num >= min : true) &&
@@ -130,8 +130,6 @@ export abstract class AbstractComponent<
                         (setValue) => this.setState((oldState, _) => {
                             var copy = Object.assign(Object.create(oldState), oldState)
                             copy.settingValues[value.name] = setValue
-                            console.log(copy);
-
                             return copy
                         }),
                         () => this.state.settingValues[value.name],

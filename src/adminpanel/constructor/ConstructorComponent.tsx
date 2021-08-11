@@ -1,14 +1,23 @@
 import React from 'react';
-import { AbstractComponent } from './components/Component';
+import { AbstractComponent, RenderReturn } from './components/Component';
 import { RealRectComponent } from './components/RectComponent';
 import './Constructor.css'
+import { ConstructorComponentsList } from './ConstructorComponentsList';
 import { ConstructorField } from './ConstructorField';
 
 function getHeight() {
     return window.innerHeight - 91;
 }
 
-export class ConstructorComponent extends React.Component {
+interface ConstructorComponentState {
+    components : RenderReturn[]
+}
+
+export class ConstructorComponent extends React.Component<{}, ConstructorComponentState> {
+
+    state = {
+        components : []
+    }
 
     render() {
         return <div
@@ -24,20 +33,31 @@ export class ConstructorComponent extends React.Component {
                 className="ConstructorField"
             >
                 <ConstructorField
-                    components={[
-                        <RealRectComponent
+                    components={this.state.components}
+                />
+            </div>
+            <ConstructorComponentsList
+                elements={[
+                    {
+                        createNew: () => <RealRectComponent
                             x={0}
                             y={0}
                             width={1}
                             height={1}
-                            background="cyan"
-                        />
-                    ]}
-                />
-            </div>
-            <div className="ConstructorComponents">
-
-            </div>
+                            background="white"
+                        />,
+                        title : "Rectangle",
+                        example : <div style={{width: "100%", height:"inherit", backgroundColor:"cyan"}}/>
+                    }
+                ]}
+                callbackAdd = {(render) => this.setState((oldState, _) => {
+                    var newArray = Array.from(oldState.components)
+                    newArray.push(render)
+                    return {
+                        components : newArray
+                    }
+                })}
+            />
         </div>
     }
 
