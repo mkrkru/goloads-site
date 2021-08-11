@@ -61,7 +61,7 @@ render() {
             }}
         >
             Login to access
-            <TelegramLoginButton dataOnauth={this.handleResponse.bind(this)} botName="goloads_auth_bot" />
+            <TelegramLoginButton dataOnauth={(user: any) => this.handleResponse(user)} botName="goloads_auth_bot" />
         </div>
     }
     return <BrowserRouter>
