@@ -1,11 +1,12 @@
 import React from "react";
 import { UserComponent } from "../common/UserComponent";
 import './Layout.css';
-import { BrowserRouter, Route, Link, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter, Route, Link, Redirect } from 'react-router-dom';
 import { Title } from "./TitleComponent";
 import TelegramLoginButton from 'react-telegram-login';
 import cookie from 'cookie_js'
-import { getTelegramIcon, isTelegramUserDefined, setTelegramUser } from "../common/Cookie";
+import { getTelegramIcon, isAllDefined, isTelegramUserDefined, setTelegramUser, setUserCookie } from "../common/Storage";
+import { promiseRegister, toTelegramCallbackUser } from "../back/Register";
 
 export interface AdminPanelBarComponent {
     render: JSX.Element | React.Component | Element
@@ -25,20 +26,23 @@ export class AdminPanelLayout extends React.Component<AdminPanelLayoutProps> {
     }
 
     handleResponse(user: any) {
-        setTelegramUser(user);
-        this.forceUpdate();
-
-        fetch(`https://doats.ml/register`, {
-            method: 'POST',
-            body: JSON.stringify(user)
-        });
+        setTelegramUser(user)
+        promiseRegister(toTelegramCallbackUser(user))
+            .then(data => {
+                if (data !== null) {
+                    setUserCookie(data.cookie)
+                }
+            })
+        this.forceUpdate()
     }
 
     render() {
-        if (!isTelegramUserDefined()) {
+        if (!isAllDefined()) {
             return <div
                 className="Flex-center Center"
                 style={{
+                    color : "white",
+                    fontSize : "200px",
                     width: "100%",
                     height: "100vh",
                     backgroundColor: "#1C1C1C"
