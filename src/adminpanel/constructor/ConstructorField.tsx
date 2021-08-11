@@ -2,8 +2,8 @@ import React from 'react';
 import { RenderReturn } from './components/Component';
 import { ConstructorCell } from './ConstructorCell';
 
-const fieldX = 20
-const fieldY = 5
+export const fieldX = 20
+export const fieldY = 5
 
 interface ConstructorCellProps {
     isFloating ?: boolean

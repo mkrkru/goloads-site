@@ -17,6 +17,7 @@ export function SingleInput(props : {
     callbackInputChange ?: (value : string, meta : any) => void
     [state : string] : any
 }) {
+    console.log(props)
     return <CreatableSelect
         isClearable
         onChange = {props.callback}

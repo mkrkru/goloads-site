@@ -1,14 +1,28 @@
 import React, { useState } from "react";
+import { start } from "repl";
 import { InputOption } from "../../../common/InputOption";
+import { fieldX, fieldY } from "../ConstructorField";
 import './Component.css'
 import { SingleInput } from "./Inputs";
 
-const integerParser = {
-    parse: (value: string): any => {
-        return parseInt(value)
-    },
-    canParse: (value: string): boolean => {
-        return parseInt(value) !== NaN
+export const integerParser = (
+    min?: number,
+    max?: number
+) => {
+    return {
+        canParse: (value: string) => {
+            if (!value) return false
+            var num = parseInt(value)
+            return num !== NaN &&
+                (min ? num >= min : true) &&
+                (max ? num <= max : true)
+        },
+        parse: (value: string) => {
+            if (!value) return 0
+            var parsed = parseInt(value)
+            if (parsed === NaN) return min
+            return parsed
+        }
     }
 }
 
@@ -24,7 +38,7 @@ export const defaultSettings: ComponentSettingProps[] = [
                 <div className="XCoordinatePositive" onClick={() => setSelf(getSelf() + 1)} />
             </>
         },
-        ...integerParser
+        ...(integerParser(0, fieldX - 1))
     },
     {
         name: "y",
@@ -35,21 +49,22 @@ export const defaultSettings: ComponentSettingProps[] = [
                 <div className="YCoordinatePositive" onClick={() => setSelf(getSelf() + 1)} />
             </>
         },
-        ...integerParser
+        ...(integerParser(0, fieldY - 1))
     },
     {
         name: "z",
-        group: "location"
+        group: "location",
+        ...(integerParser(0))
     },
     {
         name: "width",
         group: "size",
-        ...integerParser
+        ...(integerParser(1, fieldX - 1))
     },
     {
         name: "height",
         group: "size",
-        ...integerParser
+        ...(integerParser(1, fieldY - 1))
     }
 ]
 
@@ -142,21 +157,21 @@ export abstract class AbstractComponent<
             className="SettingsWindow"
             style={{
                 top: this.cellSize + "px",
-                left : this.cellSize + "px"
+                left: this.cellSize + "px"
             }}
         >
             {
                 (() => {
                     var array: RenderReturn[] = []
                     console.log(this.state);
-                    
+
                     for (const key in this.state.settingDirectories) {
                         array.push(
                             <SettingsDirectory
                                 values={this.state.settingValues}
                                 name={key}
                                 setValue={(name, value) => this.setState((oldState, _) => {
-                                    var newObject : any = {...oldState}
+                                    var newObject: any = { ...oldState }
                                     newObject.settingValues[name] = value
                                     return newObject
                                 })}
@@ -231,7 +246,7 @@ function SettingsDirectory(props: {
                     {
                         props.settings.map((value, index, __) => <div
                             className="SettingsDirectoryContainerDataName"
-                            key = {index}
+                            key={index}
                         >
                             {value.name}
                         </div>
@@ -243,10 +258,11 @@ function SettingsDirectory(props: {
                         component={value}
                         callback={(callbackValue) => {
                             if (!value.canParse || value.canParse(callbackValue)) {
-                                props.setValue(value.name, value.parse ? value.parse(callbackValue) : callbackValue)
-                                return true
+                                var parsed = value.parse ? value.parse(callbackValue) : callbackValue
+                                props.setValue(value.name, parsed)
+                                return parsed
                             }
-                            return false
+                            return undefined
                         }}
                         value={props.values[value.name]}
                         key={index}
@@ -259,33 +275,34 @@ function SettingsDirectory(props: {
 }
 
 function SettingInput(props: {
-    callback: (value: string) => boolean
+    callback: (value: string) => any | undefined
     component: ComponentSettingProps,
     value: any
 }) {
 
     const [state, setState] = useState({
-        inputValue: props.value,
-        right: true
+        inputValue: props.value
     })
 
     return (
         <div className="Settings">
             <SingleInput
                 menuIsOpen={false}
-                style={{
-                    color: state.right ? "inherit" : "#FF1100"
-                }}
-                inputValue={state.inputValue}
+                inputValue={state.inputValue !== undefined ? state.inputValue.toString() : ""}
                 placeholder=""
                 isClearable
-                callback={(value) => {
+                callback={(_) => {
                     // console.log(value);
                     // setState({ inputValue: state.inputValue, right: props.callback(value.value) })
                 }}
                 callbackInputChange={(value, meta) => {
+                    console.log(value, meta);
+                    
                     if (meta.action != 'menu-close' && meta.action != 'input-blur') {
-                        setState({ inputValue: value, right: props.callback(value) })
+                        var callbackValue = props.callback(value)
+                        if (callbackValue !== undefined) {
+                            setState({ inputValue: callbackValue })
+                        }
                     }
                 }}
             />

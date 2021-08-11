@@ -13,7 +13,7 @@ export function promiseBanner(buffer : Banner) : Promise<any> {
         headers : {
             "Access-Control-Allow-Origin": "*",
             "Accept": "application/json",
-            "Content-type": "application/json"
+            "Content-Type": "application/json"
         },
         body : JSON.stringify({
             url : buffer.url,
@@ -30,6 +30,6 @@ export function sendSyncBannerImage(image : ArrayBuffer, type : string, id : str
     }
     request.setRequestHeader("Access-Control-Allow-Origin", "*")
     request.setRequestHeader("Accept", "application/json")
-    request.setRequestHeader("Content-type", `image/${type}`)
+    request.setRequestHeader("Content-Type", `image/${type}`)
     request.send(image)
 }

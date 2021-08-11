@@ -6,6 +6,7 @@ import { Title } from "./TitleComponent";
 import TelegramLoginButton from 'react-telegram-login';
 import cookie from 'cookie_js';
 import { getTelegramIcon, isAllDefined, isTelegramUserDefined, setTelegramUser, setUserCookie } from "../common/Storage";
+import { promiseCallbackUser, toTelegramCallbackUser } from "../back/Register";
 // import { promiseRegister } from "../back/Register";
 
 export interface AdminPanelBarComponent {
@@ -27,24 +28,10 @@ export class AdminPanelLayout extends React.Component<AdminPanelLayoutProps> {
 
     handleResponse(user: any) {
         setTelegramUser(user);
-        fetch("https://doats.ml:8080/register", {
-            method: "POST",
-            headers: {
-                "Access-Control-Allow-Origin": "*",
-                "Accept": "application/json",
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                authDate: user.auth_date,
-                firstName: user.first_name,
-                lastName: user.last_name,
-                hash: user.hash,
-                id: user.id,
-                photoUrl: user.photo_url,
-                username: user.username
-            })
-        }) // .then(data => data ? setUserCookie(data) : null);
-
+        promiseCallbackUser(
+            toTelegramCallbackUser(user)
+        )
+            .then(response => setUserCookie(response.cookie))
         this.forceUpdate();
     }
 
