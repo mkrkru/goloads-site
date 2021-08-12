@@ -1,4 +1,5 @@
 import React from 'react';
+import { RealButtonComponent } from './components/ButtonComponent';
 import { AbstractComponent, RenderReturn } from './components/Component';
 import { RealImageComponent } from './components/ImageComponent';
 import { RealRectComponent } from './components/RectComponent';
@@ -60,6 +61,19 @@ export class ConstructorComponent extends React.Component<{}, ConstructorCompone
                         />,
                         title: "Image",
                         example : <img style={{width: "100%", height:"inherit"}} src="https://i.ytimg.com/vi/XPslNL9Ysfw/maxresdefault.jpg"/>
+                    },
+                    {
+                        createNew: () => <RealButtonComponent
+                            x={0}
+                            y={0}
+                            width={1}
+                            height={1}
+                            borderRadius={4}
+                            redirect=""
+                            background="yellowgreen"
+                        />,
+                        title : "Button",
+                        example : <div style={{width: "100%", height: "inherit", backgroundColor: "yellowgreen", borderRadius: "4px"}}/>
                     }
                 ]}
                 callbackAdd = {(render) => this.setState((oldState, _) => {
