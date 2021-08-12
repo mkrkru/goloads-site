@@ -279,7 +279,8 @@ function SettingInput(props: {
 }) {
 
     const [state, setState] = useState({
-        inputValue: props.value
+        inputValue: props.value,
+        error: false
     })
 
     return (
@@ -295,11 +296,14 @@ function SettingInput(props: {
                 }}
                 callbackInputChange={(value, meta) => {
                     console.log(value, meta);
-                    
+
                     if (meta.action != 'menu-close' && meta.action != 'input-blur') {
                         var callbackValue = props.callback(value)
                         if (callbackValue !== undefined) {
-                            setState({ inputValue: callbackValue })
+                            setState({ inputValue: callbackValue, error: false })
+                        }
+                        else {
+                            setState({ inputValue: value, error: true })
                         }
                     }
                 }}

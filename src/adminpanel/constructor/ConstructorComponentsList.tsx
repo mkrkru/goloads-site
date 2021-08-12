@@ -23,10 +23,12 @@ export class ConstructorComponentsList extends React.Component<ConstructorCompon
                         onClick={() => {
                             this.props.callbackAdd(value.createNew())
                         }}>
+                        <div className="ConstructorComponentsElementExample">
+                            {value.example}
+                        </div>
                         <div className="ConstructorComponentsElementTitle">
                             {value.title}
                         </div>
-                        {value.example}
                     </div>
                 })
             }
