@@ -1,5 +1,4 @@
 import cookie from 'cookie_js';
-// import localstorage from 'local-storage'
 
 export interface TelegramUser {
     id: number
@@ -25,7 +24,7 @@ export function isAllDefined(): boolean {
 }
 
 export function getTelegramUser(): number {
-    return cookie.get("tg_user")
+    return cookie.get("tg_user");
 }
 
 export function getTelegramIcon(): string {
@@ -37,6 +36,7 @@ export function getUserCookie(): string {
 }
 
 export function setTelegramId(id: number) {
+    sessionStorage.tg_user = id;
     cookie.set("tg_user", id)
 }
 
