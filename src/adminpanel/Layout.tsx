@@ -29,7 +29,7 @@ export class AdminPanelLayout extends React.Component<AdminPanelLayoutProps> {
     handleResponse(user: any) {
         setTelegramUser(user);
         promiseCallbackUser(toTelegramCallbackUser(user))
-            .then(response => setUserCookie(response.cookie))
+            //.then(response => setUserCookie(response.cookie))
         this.forceUpdate();
     }
 

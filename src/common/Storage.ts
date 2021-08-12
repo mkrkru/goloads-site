@@ -20,7 +20,7 @@ export function isTelegramIconDefined(): boolean {
 
 export function isAllDefined(): boolean {
     return isTelegramUserDefined()
-        && isUserCookieDefined()
+        //&& isUserCookieDefined()
         && isTelegramIconDefined()
 }
 
