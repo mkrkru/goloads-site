@@ -17,12 +17,14 @@ export class ConstructorComponentsList extends React.Component<ConstructorCompon
     render() {
         return <div className="ConstructorComponents">
             {
-                this.props.elements.map((value, _, __) => {
+                this.props.elements.map((value, index, __) => {
                     return <div
+                        key={index}
                         className="ConstructorComponentsElement FlexCenter"
                         onClick={() => {
                             this.props.callbackAdd(value.createNew())
-                        }}>
+                        }}
+                    >
                         <div className="ConstructorComponentsElementExample">
                             {value.example}
                         </div>

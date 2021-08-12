@@ -31,14 +31,15 @@ export class RectComponent extends AbstractComponent<ComponentProps, ComponentSt
                 backgroundColor: this.state.settingValues["background"]
             }}
         >
-            <div 
-            onClick={this.toggleFocus}
-            style={{
-                ...this.defaultStyle(),
-                backgroundColor: "transparent"
-            }}
+            <div
+                className="RealComponent"
+                onClick={this.toggleFocus}
+                style={{
+                    ...this.realDefaultStyle()
+                    // backgroundColor: "transparent"
+                }}
             />
-            {this.childrens()}
+            {/* {this.childrens()} */}
             {this.state.focused ? this.settingsWindow() : <></>}
         </div>
     }

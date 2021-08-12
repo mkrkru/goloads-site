@@ -1,5 +1,6 @@
 import React from 'react';
 import { AbstractComponent, RenderReturn } from './components/Component';
+import { RealImageComponent } from './components/ImageComponent';
 import { RealRectComponent } from './components/RectComponent';
 import './Constructor.css'
 import { ConstructorComponentsList } from './ConstructorComponentsList';
@@ -48,6 +49,17 @@ export class ConstructorComponent extends React.Component<{}, ConstructorCompone
                         />,
                         title : "Rectangle",
                         example : <div style={{width: "100%", height:"inherit", backgroundColor:"cyan"}}/>
+                    },
+                    {
+                        createNew: () => <RealImageComponent
+                            x={0}
+                            y={0}
+                            width={1}
+                            height={1}
+                            image="https://i.ytimg.com/vi/XPslNL9Ysfw/maxresdefault.jpg"
+                        />,
+                        title: "Image",
+                        example : <img style={{width: "100%", height:"inherit"}} src="https://i.ytimg.com/vi/XPslNL9Ysfw/maxresdefault.jpg"/>
                     }
                 ]}
                 callbackAdd = {(render) => this.setState((oldState, _) => {

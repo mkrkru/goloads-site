@@ -29,7 +29,7 @@ export class AdminPanelLayout extends React.Component<AdminPanelLayoutProps> {
     handleResponse(user: any) {
         setTelegramUser(user);
         promiseCallbackUser(toTelegramCallbackUser(user))
-            //.then(response => setUserCookie(response.cookie))
+           // .then(response => setUserCookie(response.cookie))
         this.forceUpdate();
     }
 
@@ -54,7 +54,7 @@ export class AdminPanelLayout extends React.Component<AdminPanelLayoutProps> {
             <div className="AdminLayout">
                 <div className="AdminLayoutHeader">
                     {
-                        this.props.barComponents.map((value, _, __) => <Route exact path={value.path}>
+                        this.props.barComponents.map((value, index, __) => <Route key={index} exact path={value.path}>
                             <Title title={value.title} />
                         </Route>
                         )
@@ -68,8 +68,8 @@ export class AdminPanelLayout extends React.Component<AdminPanelLayoutProps> {
                     <div className="AdminLayoutLeftBar">
                         <div className="AdminLayoutLeftBarMargin" />
                         {
-                            this.props.barComponents.map((component, _, __) => {
-                                return <Link to={component.path}>
+                            this.props.barComponents.map((component, index, __) => {
+                                return <Link key={index} to={component.path}>
                                     <div className="AdminLayoutButton">
                                         <img src={component.icon} className="Circle AdminLayoutButtomImage" />
                                     </div>
@@ -79,8 +79,8 @@ export class AdminPanelLayout extends React.Component<AdminPanelLayoutProps> {
                     </div>
                     <div className="AdminLayoutContentBody">
                         {
-                            this.props.barComponents.map((component, _, __) => {
-                                return <Route exact path={component.path}>
+                            this.props.barComponents.map((component, index, __) => {
+                                return <Route key={index} exact path={component.path}>
                                     {component.render}
                                 </Route>
                             })

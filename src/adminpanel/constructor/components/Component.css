@@ -15,6 +15,10 @@
     background-color: white;
 }
 
+.SettingsDirectoryTitle:hover {
+    cursor: pointer;
+}
+
 .SettingsDirectoryContainer {
     width: inherit;
     display: flex;
@@ -74,6 +78,15 @@
     position: absolute;
 }
 
+.RealComponent {
+    background-color: transparent;
+    position: absolute;
+}
+
+.RealComponent:hover {
+    cursor: pointer;
+}
+
 .YCoordinatePositive {
     position: absolute;
     height: 30px;
@@ -97,4 +110,16 @@
 .SettingsDirectoryContainerDataName {
     height: 38px;
     text-align: center;
+}
+
+.FileInput {
+    color: transparent;
+    width: 100%;
+    height: 38px;
+}
+
+.FileInputContainer {
+    position: relative;
+    width: 100%;
+    min-height: 38px;
 }
