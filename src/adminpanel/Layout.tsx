@@ -49,7 +49,7 @@ export class AdminPanelLayout extends React.Component<AdminPanelLayoutProps> {
             </div>
         }
         return <BrowserRouter>
-            <Redirect exact from="/" to="/analytics" />
+            <Redirect exact from="/" to="/banners" />
             <div className="AdminLayout">
                 <div className="AdminLayoutHeader">
                     {

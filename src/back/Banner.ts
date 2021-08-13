@@ -60,12 +60,10 @@ export function promiseBanners(): Promise<ResponseBanner[]> {
         headers: {
             "Access-Control-Allow-Origin": "*",
             "Accept": "application/json",
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            tgId: getTelegramUser(),
-            userCookie: getUserCookie(),
-        })
+            "Content-Type": "application/json",
+            "tg-id": getTelegramUser().toString(),
+            "user-cookie": getUserCookie()
+        }
     })
         .then(response => {
             if (response.ok) {

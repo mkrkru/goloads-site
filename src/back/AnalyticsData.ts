@@ -90,12 +90,10 @@ export function promiseAnalyticsData(id : string) : Promise<AnalyticsData> {
         method: "GET",
         headers: {
             "Access-Control-Allow-Origin": "*",
-            "Accept": "application/json"
-        },
-        body : JSON.stringify({
-            "tg-id": getTelegramUser(),
+            "Accept": "application/json",
+            "tg-id": getTelegramUser().toString(),
             "user-cookie": getUserCookie()
-        })
+        }
     })
     .then(response => {
         if (response.ok) {
