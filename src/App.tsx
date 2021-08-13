@@ -9,6 +9,8 @@ import cookie from 'cookie_js'
 
 import AnalyticsIcon from './assets/analytics_icon.png'
 import { ConstructorComponent } from './adminpanel/constructor/ConstructorComponent';
+import { BannerListComponent } from './adminpanel/bannerlist/BannerListComponent';
+import { FetchBannerListComponent } from './adminpanel/bannerlist/FetchBannerListComponent';
 
 function App() {
     if (!cookie.enabled()) {
@@ -36,6 +38,12 @@ function App() {
             title: "Конструктор",
             path: "/constructor"
         },
+        {
+            render: <FetchBannerListComponent/>,
+            icon: "",
+            title : "Баннеры",
+            path: "/banners"
+        }
         // {
         //     render: <ConstructorComponent/>,
         //     icon : "",

@@ -1,0 +1,15 @@
+.BannerListContainer {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.BannerListElementImage {
+    width: 500px;
+    height: 200px;
+}
+
+.BannerListElement {
+    display: flex;
+    flex-direction: column;
+}
