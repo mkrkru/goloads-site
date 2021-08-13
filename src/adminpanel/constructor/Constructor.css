@@ -16,7 +16,6 @@
     padding-top: 10px;
     display: flex;
     width: 20%;
-    max-height: inherit;
     flex-direction: column;
 }
 

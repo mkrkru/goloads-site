@@ -36,12 +36,12 @@ function App() {
             title: "Конструктор",
             path: "/constructor"
         },
-        {
-            render: <ConstructorComponent/>,
-            icon : "",
-            title : "ConstructIt",
-            path : "/construct"
-        }
+        // {
+        //     render: <ConstructorComponent/>,
+        //     icon : "",
+        //     title : "ConstructIt",
+        //     path : "/construct"
+        // }
       ]}
       />
     );

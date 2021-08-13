@@ -1,3 +1,5 @@
+import { getTelegramUser, getUserCookie, setUserCookie } from "../common/Storage";
+
 export interface AnalyticsData {
     id: string,
     clicks: number[],
@@ -89,7 +91,11 @@ export function promiseAnalyticsData(id : string) : Promise<AnalyticsData> {
         headers: {
             "Access-Control-Allow-Origin": "*",
             "Accept": "application/json"
-        }
+        },
+        body : JSON.stringify({
+            "tg-id": getTelegramUser(),
+            "user-cookie": getUserCookie()
+        })
     })
     .then(response => {
         if (response.ok) {
@@ -101,6 +107,7 @@ export function promiseAnalyticsData(id : string) : Promise<AnalyticsData> {
         }
     })
     .then(data => {
+        setUserCookie(data.userCookie)
         if (data) {
             return {
                 id : data.id,

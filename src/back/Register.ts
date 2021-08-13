@@ -1,3 +1,5 @@
+import { setUserCookie } from "../common/Storage";
+
 export interface TelegramCallbackUser {
     authDate: number,
     firstName: string,
@@ -8,19 +10,19 @@ export interface TelegramCallbackUser {
     username: string
 }
 
-export function toTelegramCallbackUser(user : any) : TelegramCallbackUser {
+export function toTelegramCallbackUser(user: any): TelegramCallbackUser {
     return {
-        authDate : user.auth_date,
-        firstName : user.first_name,
-        lastName : user.last_name,
-        hash : user.hash,
-        id : user.id,
-        photoUrl : user.photo_url,
-        username : user.username
+        authDate: user.auth_date,
+        firstName: user.first_name,
+        lastName: user.last_name,
+        hash: user.hash,
+        id: user.id,
+        photoUrl: user.photo_url,
+        username: user.username
     }
 }
 
-export function promiseCallbackUser(user : TelegramCallbackUser) : Promise<any> {
+export function promiseCallbackUser(user: TelegramCallbackUser): Promise<any> {
     return fetch("https://doats.ml:8080/register", {
         method: "POST",
         headers: {
@@ -29,5 +31,13 @@ export function promiseCallbackUser(user : TelegramCallbackUser) : Promise<any> 
             "Content-Type": "application/json"
         },
         body: JSON.stringify(user)
-    }).then(data => data.json());
+    })
+        .then(response => {
+            if (response.ok) {
+                return response.json()
+            }
+            return null;
+        })
+        .then(response => setUserCookie(response.userCookie))
+        ;
 }

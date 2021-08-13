@@ -51,7 +51,7 @@ export class ConstructorComponent extends React.Component<{}, ConstructorCompone
                         title : "Rectangle",
                         example : <div style={{width: "100%", height:"inherit", backgroundColor:"cyan"}}/>
                     },
-                    {
+                    {   
                         createNew: () => <RealImageComponent
                             x={0}
                             y={0}
