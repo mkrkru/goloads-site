@@ -9,6 +9,7 @@ import cookie from 'cookie_js'
 
 import AnalyticsIcon from './assets/analytics_icon.png'
 import UploadIcon from './assets/upload_icon.png'
+import BannersIcon from './assets/banners_icon.png'
 import { ConstructorComponent } from './adminpanel/constructor/ConstructorComponent';
 import { BannerListComponent } from './adminpanel/bannerlist/BannerListComponent';
 import { FetchBannerListComponent } from './adminpanel/bannerlist/FetchBannerListComponent';
@@ -34,7 +35,7 @@ function App() {
     <AdminPanelLayout barComponents={[
       {
         render: <FetchBannerListComponent callback={id => setState({ id: id })} />,
-        icon: "",
+        icon: BannersIcon,
         title: "Баннеры",
         path: "/banners"
       },

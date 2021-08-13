@@ -4,10 +4,8 @@ import './Layout.css';
 import { BrowserRouter, Route, Link, Redirect } from 'react-router-dom';
 import { Title } from "./TitleComponent";
 import TelegramLoginButton from 'react-telegram-login';
-import cookie from 'cookie_js';
 import { getTelegramIcon, isAllDefined, isTelegramUserDefined, setTelegramUser, setUserCookie } from "../common/Storage";
 import { promiseCallbackUser, toTelegramCallbackUser } from "../back/Register";
-// import { promiseRegister } from "../back/Register";
 
 export interface AdminPanelBarComponent {
     render: JSX.Element | React.Component | Element

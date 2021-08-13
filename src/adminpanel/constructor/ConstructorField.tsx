@@ -6,20 +6,20 @@ export const fieldX = 20
 export const fieldY = 5
 
 interface ConstructorCellProps {
-    isFloating ?: boolean
+    isFloating?: boolean
 }
 
 interface ConstructorFieldState {
-    cells : ConstructorCellProps[][]
+    cells: ConstructorCellProps[][]
 }
 
 interface ConstructorFieldProps {
-    components : RenderReturn[]
+    components: RenderReturn[]
 }
 
 export class ConstructorField extends React.Component<ConstructorFieldProps, ConstructorFieldState> {
 
-    constructor(props : ConstructorFieldProps) {
+    constructor(props: ConstructorFieldProps) {
         super(props)
 
         var cellsMatrix = new Array<Array<ConstructorCellProps>>()
@@ -31,29 +31,29 @@ export class ConstructorField extends React.Component<ConstructorFieldProps, Con
             cellsMatrix.push(cellsArray)
         }
         this.state = {
-            cells : cellsMatrix
+            cells: cellsMatrix
         }
 
     }
 
     render() {
-        return <div className = "ConstructorFieldColumn">
+        return <div className="ConstructorFieldColumn">
             {
                 this.state.cells.map((array, index, _) => (
-                    <div className = "ConstructorFieldRow" key={index}>
+                    <div className="ConstructorFieldRow" key={index}>
                         {
                             array.map((value, index, _) => (
                                 <ConstructorCell
-                                key = {index}
-                                isFloating = {value.isFloating}
-                                callbackHoverEnd = {(_) => {
-                                    value.isFloating = false
-                                    this.updateField()
-                                }}
-                                callbackHoverEnter = {(_) => {
-                                    value.isFloating = true
-                                    this.updateField()
-                                }}
+                                    key={index}
+                                    isFloating={value.isFloating}
+                                    callbackHoverEnd={(_) => {
+                                        value.isFloating = false
+                                        this.updateField()
+                                    }}
+                                    callbackHoverEnter={(_) => {
+                                        value.isFloating = true
+                                        this.updateField()
+                                    }}
                                 />
                             ))
                         }
@@ -68,7 +68,7 @@ export class ConstructorField extends React.Component<ConstructorFieldProps, Con
 
     updateField() {
         this.setState((oldState, _) => {
-            return {...oldState}
+            return { ...oldState }
         })
     }
 
