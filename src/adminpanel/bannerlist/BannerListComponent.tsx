@@ -34,12 +34,14 @@ function BannerListElement(props: {
     key?: number
 }) {
     return (
-        <Link to="/analytics"> 
-            <div className="BannerListElement" key={props.key} onClick={() => props.callback(props.banner.id)}>
-                <img src={props.banner.image} className="BannerListElementImage" />
-                <div className="BannerListElementTo">to: {props.banner.redirect}</div>
-                <div className="BannerListElementDomains">domains : {props.banner.domains ? props.banner.domains.join(" ") : "all"}</div>
-            </div>
-        </Link>
+        <div className="BannerListElementMargin">
+            <Link to="/analytics">
+                <div className="BannerListElement" key={props.key} onClick={() => props.callback(props.banner.id)}>
+                    <img src={props.banner.image} className="BannerListElementImage" />
+                    <div className="BannerListElementTo">to: {props.banner.redirect}</div>
+                    <div className="BannerListElementDomains">domains : {props.banner.domains ? props.banner.domains.join(" ") : "all"}</div>
+                </div>
+            </Link>
+        </div>
     )
 }

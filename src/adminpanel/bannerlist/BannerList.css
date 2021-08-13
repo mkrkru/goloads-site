@@ -2,6 +2,8 @@
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
+    justify-content: center;
+    padding-top: 25px;
 }
 
 .BannerListElementImage {
@@ -11,5 +13,21 @@
 
 .BannerListElement {
     display: flex;
+    text-decoration: none;
+    color: white;
     flex-direction: column;
+}
+
+.BannerListElementMargin {
+    margin-right: 150px;
+    width: 500px;
+    height: 200px;
+}
+
+.BannerListElementTo {
+    text-decoration: none;
+}
+
+.BannerListElementDomains {
+    text-decoration: none;
 }

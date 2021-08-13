@@ -34,7 +34,20 @@ function App() {
   return (
     <AdminPanelLayout barComponents={[
       {
-        render: <FetchBannerListComponent callback={id => setState({ id: id })} />,
+        render: <BannerListComponent banners = {[
+          {
+            id : "AAAA",
+            domains : ["ee", "aa"],
+            redirect: "uk.com",
+            image: "https://avatars.githubusercontent.com/u/51133999?v=4"
+          },
+          {
+            id : "AAAA",
+            domains : ["aee", "aa"],
+            redirect: "uk.com",
+            image: "https://avatars.githubusercontent.com/u/51133999?v=4"
+          }
+        ]} callback={id => setState({ id: id })} />,
         icon: BannersIcon,
         title: "Баннеры",
         path: "/banners"
